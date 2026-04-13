@@ -98,7 +98,22 @@ export default async function LearningPlayerPage({
             {activeLesson ? (
               activeLesson.videoUrl ? (
                 <iframe 
-                  src={activeLesson.videoUrl} 
+                  src={(function(url) {
+                    if (!url) return '';
+                    try {
+                      const urlObj = new URL(url);
+                      if (urlObj.hostname.includes('youtube.com') && urlObj.searchParams.get('v')) {
+                        return `https://www.youtube.com/embed/${urlObj.searchParams.get('v')}`;
+                      }
+                      if (urlObj.hostname.includes('youtube.com') && urlObj.pathname.startsWith('/shorts/')) {
+                        return `https://www.youtube.com/embed/${urlObj.pathname.split('/shorts/')[1]}`;
+                      }
+                      if (urlObj.hostname.includes('youtu.be')) {
+                        return `https://www.youtube.com/embed${urlObj.pathname}`;
+                      }
+                    } catch(e) {}
+                    return url;
+                  })(activeLesson.videoUrl)}
                   style={{ width: '100%', height: '100%', border: 'none', position: 'absolute', top: 0, left: 0 }} 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen 
