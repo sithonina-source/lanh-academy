@@ -146,8 +146,18 @@ export default async function CourseDetailPage({
              </div>
 
              <div style={{ padding: '24px' }}>
-                <div style={{ fontSize: '1.75rem', fontWeight: 700, color: '#111827', marginBottom: '20px' }}>
-                  {course.price === 0 ? 'Miễn phí' : new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(course.price)}
+                <div style={{ marginBottom: '20px' }}>
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'baseline', flexWrap: 'wrap' }}>
+                    <span style={{ fontWeight: 800, color: (course.discountPrice || course.price) === 0 ? 'var(--primary-green)' : 'var(--dark-accent)', fontSize: '1.75rem' }}>
+                      {(course.discountPrice || course.price) === 0 ? 'Miễn phí' : new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(course.discountPrice || course.price)}
+                    </span>
+                    
+                    {course.discountPrice && course.price > course.discountPrice && (
+                      <span style={{ textDecoration: 'line-through', color: 'var(--text-muted)', fontSize: '1.25rem' }}>
+                        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(course.price)}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Metadata details */}
