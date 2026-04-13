@@ -20,13 +20,14 @@ export default async function AdminLayout({
   const hasFullAccess = session.role === 'ADMIN' || permissions.includes('ALL');
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F3F4F6' }}>
+  return (
+    <div className="admin-layout">
       {/* Sidebar */}
-      <aside style={{ width: '250px', backgroundColor: '#1F2937', color: 'white', display: 'flex', flexDirection: 'column' }}>
+      <aside className="admin-sidebar" style={{ backgroundColor: '#1F2937', color: 'white', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '20px', borderBottom: '1px solid #374151', fontSize: '1.2rem', fontWeight: 800 }}>
           <Link href="/admin" style={{ color: 'white', textDecoration: 'none' }}>🌿 Lành Admin</Link>
         </div>
-        <nav style={{ flex: 1, padding: '20px 0', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+        <nav className="admin-nav" style={{ flex: 1, padding: '20px 0', display: 'flex', gap: '5px' }}>
           
           {(hasFullAccess || permissions.includes('SYSTEM')) && (
             <Link href="/admin" style={{ padding: '12px 20px', color: '#D1D5DB', textDecoration: 'none', transition: 'background 0.2s' }} className="admin-nav-link">
@@ -58,8 +59,8 @@ export default async function AdminLayout({
             </Link>
           )}
         </nav>
-        <div style={{ padding: '20px', borderTop: '1px solid #374151', fontSize: '0.9rem', color: '#9CA3AF' }}>
-          Đang xem với: <br /><strong style={{ color: 'white' }}>{session.email}</strong>
+        <div className="admin-user-info" style={{ padding: '20px', borderTop: '1px solid #374151', fontSize: '0.9rem', color: '#9CA3AF' }}>
+          Đang xem với: <br /><strong style={{ color: 'white', wordBreak: 'break-all' }}>{session.email}</strong>
           <br /><br />
           <form action={logoutAdmin}>
              <button type="submit" style={{ background: 'none', border: 'none', color: '#EF4444', padding: 0, cursor: 'pointer', fontSize: '0.9rem' }}>🚪 Đăng xuất</button>
@@ -68,20 +69,76 @@ export default async function AdminLayout({
       </aside>
 
       {/* Main Content */}
-      <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <header style={{ backgroundColor: 'white', padding: '20px 30px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ margin: 0, fontSize: '1.5rem', color: 'var(--dark-accent)' }}>Trung Tâm Quản Trị // <span style={{ color: '#10B981', fontSize: '1.2rem' }}>{session.role === 'ADMIN' ? 'SUPER ADMIN' : 'STAFF'}</span></h2>
-          <Link href="/" className="btn btn-outline" style={{ padding: '6px 14px', fontSize: '0.9rem' }}>Về Website</Link>
+      <main className="admin-main" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <header className="admin-header" style={{ backgroundColor: 'white', padding: '20px 30px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center' }}>
+          <h2 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--dark-accent)' }}>Trung Tâm Quản Trị <br className="show-on-mobile-break" />// <span style={{ color: '#10B981', fontSize: '1.2rem' }}>{session.role === 'ADMIN' ? 'SUPER ADMIN' : 'STAFF'}</span></h2>
+          <Link href="/" className="btn btn-outline" style={{ padding: '6px 14px', fontSize: '0.9rem', whiteSpace: 'nowrap' }}>Về Website</Link>
         </header>
-        <div style={{ padding: '30px', flex: 1, overflowY: 'auto' }}>
+        <div style={{ padding: '20px', flex: 1, overflowY: 'auto' }}>
           {children}
         </div>
       </main>
 
       <style>{`
+        .admin-layout {
+           display: flex;
+           min-height: 100vh;
+           background-color: #F3F4F6;
+           width: 100%;
+           overflow-x: hidden;
+        }
+        .admin-sidebar {
+           width: 250px;
+           flex-shrink: 0;
+        }
+        .admin-nav {
+           flex-direction: column;
+        }
+        .admin-header {
+           justify-content: space-between;
+        }
+        .show-on-mobile-break {
+           display: none;
+        }
         .admin-nav-link:hover {
           background-color: #374151;
           color: white !important;
+        }
+
+        @media (max-width: 800px) {
+           .admin-layout {
+              flex-direction: column;
+           }
+           .admin-sidebar {
+              width: 100%;
+           }
+           .admin-nav {
+              flex-direction: row !important;
+              overflow-x: auto;
+              padding: 0 !important;
+           }
+           .admin-nav-link {
+              white-space: nowrap;
+              border-bottom: 2px solid transparent;
+           }
+           .admin-nav-link:hover {
+              border-bottom: 2px solid #10B981;
+           }
+           .admin-user-info {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 20px !important;
+           }
+           .admin-user-info br {
+              display: none;
+           }
+           .admin-header {
+              padding: 15px !important;
+           }
+           .show-on-mobile-break {
+              display: block;
+           }
         }
       `}</style>
     </div>
