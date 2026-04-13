@@ -140,7 +140,7 @@ export default async function LearningPlayerPage({
           </div>
           
           {/* Info & Button Below Video */}
-          <div style={{ padding: '24px', borderTop: '1px solid #E5E7EB', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="learning-info-bar">
             <div>
               <p style={{ margin: '0 0 8px 0', fontSize: '1rem', color: '#4B5563' }}>
                 Module: {course.title}
