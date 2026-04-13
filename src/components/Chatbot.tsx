@@ -165,7 +165,22 @@ export default function Chatbot() {
          )}
 
          {!isOpen && (
-            <div onClick={toggleChat} className="belanh-mascot">
+            <div onClick={toggleChat} className="belanh-mascot" style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
+               <div style={{
+                  backgroundColor: 'white',
+                  padding: '10px 18px',
+                  borderRadius: '20px 20px 0 20px',
+                  boxShadow: '0 4px 15px rgba(16, 185, 129, 0.2)',
+                  fontSize: '0.95rem',
+                  fontWeight: 600,
+                  color: '#059669',
+                  border: '1px solid rgba(16,185,129,0.2)',
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer',
+                  marginBottom: '15px'
+               }}>
+                  Trò chuyện cùng Bé Lành 👋
+               </div>
                <img src="/be-lanh.png" alt="Chat với Bé Lành" style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
             </div>
          )}
