@@ -147,10 +147,27 @@ export default async function LearningPlayerPage({
               </h2>
             </div>
             
-            <button style={{ backgroundColor: 'var(--primary-green)', color: 'white', border: 'none', padding: '12px 24px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, fontSize: '1rem', cursor: 'pointer', flexShrink: 0 }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Xác nhận hoàn thành
-            </button>
+            {(() => {
+              const allLessons = course.modules.flatMap(m => m.lessons);
+              const activeIndex = allLessons.findIndex(l => l.id === activeLesson?.id);
+              const nextLesson = activeIndex >= 0 && activeIndex < allLessons.length - 1 ? allLessons[activeIndex + 1] : null;
+
+              if (nextLesson) {
+                return (
+                  <Link href={`/learn/${course.id}?lessonId=${nextLesson.id}`} style={{ backgroundColor: 'var(--primary-green)', color: 'white', border: 'none', padding: '12px 24px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, fontSize: '1rem', cursor: 'pointer', flexShrink: 0, textDecoration: 'none' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Xác nhận hoàn thành
+                  </Link>
+                );
+              } else {
+                return (
+                  <Link href={`/khoa-hoc/${course.slug || course.id}`} style={{ backgroundColor: '#F59E0B', color: 'white', border: 'none', padding: '12px 24px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 600, fontSize: '1rem', cursor: 'pointer', flexShrink: 0, textDecoration: 'none' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    Hoàn thành khóa học
+                  </Link>
+                );
+              }
+            })()}
           </div>
         </div>
       </main>
