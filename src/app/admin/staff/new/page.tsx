@@ -13,7 +13,7 @@ export default function NewStaffPage() {
         <h1 style={{ fontSize: '2rem', margin: 0, color: 'var(--dark-accent)' }}>Thêm Nhân Sự Mới</h1>
       </div>
       
-      <form action={createStaff} style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
+      <form action={async (fw) => { await createStaff(fw); }} style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
         
         {/* Thông tin tài khoản */}
         <div style={{ flex: '1 1 400px', backgroundColor: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', gap: '20px' }}>

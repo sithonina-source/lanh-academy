@@ -7,7 +7,7 @@ import CallToAction from '@/components/CallToAction';
 
 export default async function BlogPage() {
   // Lấy các bài viết mới nhất từ Database
-  let blogs = [];
+  let blogs: any[] = [];
   try {
     blogs = await prisma.blog.findMany({
       orderBy: { createdAt: 'desc' }
