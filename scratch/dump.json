@@ -1,0 +1,256 @@
+{
+  "users": [
+    {
+      "id": "cmnsnccjo0000ig1to97zz049",
+      "name": "Admin Lành Academy",
+      "email": "admin@lanh.com",
+      "password": "password123",
+      "role": "ADMIN",
+      "permissions": null,
+      "createdAt": "2026-04-10T08:31:04.068Z",
+      "updatedAt": "2026-04-10T08:31:04.068Z"
+    },
+    {
+      "id": "cmnsrhnj30000n69gg02sd7jl",
+      "name": "CÔNG TY TNHH TM DV VÀ SỰ KIỆN LÀNH",
+      "email": "sitho.nina@gmail.com",
+      "password": "112132@tyu",
+      "role": "USER",
+      "permissions": null,
+      "createdAt": "2026-04-10T10:27:10.047Z",
+      "updatedAt": "2026-04-10T10:27:10.047Z"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "slug": "dat-set-nghe-thuat",
+      "title": "Đất Sét Nghệ Thuật",
+      "category": "Đất sét",
+      "instructor": "Lành Workshop",
+      "duration": "4 Tuần",
+      "level": "Cơ bản",
+      "lessonsCount": 24,
+      "price": 1290000,
+      "discountPrice": null,
+      "discountEndsAt": "2026-04-13T09:15:52.139Z",
+      "imageUrl": "/472988478_122204505116040203_2103331358923584371_n.jpg",
+      "description": "Tạo hình nhân vật, phụ kiện, decor từ đất sét polymer — từ cơ bản đến tạo hình chi tiết.",
+      "createdAt": "2026-04-10T08:31:04.001Z",
+      "updatedAt": "2026-04-10T09:15:52.150Z"
+    },
+    {
+      "id": "2",
+      "slug": "resin-art",
+      "title": "Resin Art Toàn Diện",
+      "category": "Resin Art",
+      "instructor": "Lành Workshop",
+      "duration": "5 Tuần",
+      "level": "Mọi cấp độ",
+      "lessonsCount": 30,
+      "price": 1590000,
+      "discountPrice": null,
+      "discountEndsAt": "2026-04-13T09:15:52.139Z",
+      "imageUrl": "/473997559_122146957868393433_3798468804797401311_n.jpg",
+      "description": "Làm khay, tranh, phụ kiện từ nhựa resin — kỹ thuật đổ màu, ép hoa, tạo hiệu ứng ấn tượng.",
+      "createdAt": "2026-04-10T08:31:04.014Z",
+      "updatedAt": "2026-04-10T09:15:52.150Z"
+    },
+    {
+      "id": "3",
+      "slug": "Khóa học Workshop Mosaic  Độc Đáo",
+      "title": "Khóa học Workshop Mosaic  Độc Đáo",
+      "category": "Mosaic",
+      "instructor": "Lành Workshop",
+      "duration": "3 Tuần",
+      "level": "Cơ bản",
+      "lessonsCount": 20,
+      "price": 1190000,
+      "discountPrice": 499999,
+      "discountEndsAt": "2026-04-13T09:15:52.139Z",
+      "imageUrl": "/474575795_122146957844393433_3851454737920078026_n.jpg",
+      "description": "Ghép gạch mosaic tạo tranh, khung gương, chậu cây — nghệ thuật ghép mảnh độc đáo.",
+      "createdAt": "2026-04-10T08:31:04.025Z",
+      "updatedAt": "2026-04-10T09:15:52.150Z"
+    },
+    {
+      "id": "4",
+      "slug": "Khóa học Workshop Nến Thơm",
+      "title": "Khóa học Workshop Nến Thơm",
+      "category": "Nến thơm",
+      "instructor": "Lành Workshop",
+      "duration": "3 Tuần",
+      "level": "Mọi cấp độ",
+      "lessonsCount": 18,
+      "price": 990000,
+      "discountPrice": null,
+      "discountEndsAt": "2026-04-13T09:15:52.139Z",
+      "imageUrl": "/476632834_122149501028393433_2815148235107927880_n.jpg",
+      "description": "Làm nến soy wax, nến trang trí, phối mùi hương — kèm kiến thức kinh doanh cơ bản.",
+      "createdAt": "2026-04-10T08:31:04.037Z",
+      "updatedAt": "2026-04-10T09:15:52.150Z"
+    },
+    {
+      "id": "5",
+      "slug": "Khóa học Workshop Diorama ",
+      "title": "Khóa học Workshop Diorama ",
+      "category": "Mô hình",
+      "instructor": "Lành Workshop",
+      "duration": "6 Tuần",
+      "level": "Nâng cao",
+      "lessonsCount": 28,
+      "price": 1490000,
+      "discountPrice": null,
+      "discountEndsAt": "2026-04-13T09:15:52.139Z",
+      "imageUrl": "/488849144_122221522322040203_3023132075756377350_n.jpg",
+      "description": "Dựng mô hình thu nhỏ (phòng mini, cảnh thiên nhiên) bằng vật liệu thủ công vô cùng tinh xảo.",
+      "createdAt": "2026-04-10T08:31:04.047Z",
+      "updatedAt": "2026-04-10T09:15:52.150Z"
+    },
+    {
+      "id": "6",
+      "slug": "phu-kien-handmade",
+      "title": "Trang Trí Phụ Kiện Handmade",
+      "category": "Phụ kiện",
+      "instructor": "Lành Workshop",
+      "duration": "4 Tuần",
+      "level": "Cơ bản",
+      "lessonsCount": 22,
+      "price": 890000,
+      "discountPrice": null,
+      "discountEndsAt": "2026-04-13T09:15:52.139Z",
+      "imageUrl": "/490382301_122221522286040203_4772887799529056120_n.jpg",
+      "description": "Làm kẹp tóc, móc khóa, hoa tai từ đất sét, resin, vải — phong cách cá nhân hóa thời trang.",
+      "createdAt": "2026-04-10T08:31:04.058Z",
+      "updatedAt": "2026-04-10T09:15:52.150Z"
+    },
+    {
+      "id": "cmnwmz6550000jg3n8yt0cuiq",
+      "slug": "workshop-mosaic-kiem-30tr-thang",
+      "title": "Workshop Mosaic Học xong kiếm 30tr/ tháng",
+      "category": "Mosaic",
+      "instructor": "Lành Workshop",
+      "duration": "1 Tuần",
+      "level": "Cơ bản",
+      "lessonsCount": 3,
+      "price": 20000000,
+      "discountPrice": 2000,
+      "discountEndsAt": "2026-04-18T03:33:00.000Z",
+      "imageUrl": "/mosaic_workshop.png",
+      "description": "Khóa học test luồng thanh toán SePay 2.000đ. Đảm bảo học xong kiếm 30tr/tháng!",
+      "createdAt": "2026-04-13T03:31:53.945Z",
+      "updatedAt": "2026-04-13T03:34:02.896Z"
+    }
+  ],
+  "blogs": [
+    {
+      "id": "cmnsnccjy0001ig1tn05jayyk",
+      "title": "Top 5 loại sáp làm nến thơm an toàn cho sức khỏe",
+      "excerpt": "Mùi hương định hình không gian sống, nhưng độ an toàn của sáp nến mới là yếu tố quan trọng nhất. Cùng Lành tìm hiểu nhé.",
+      "content": "Nội dung chi tiết blog 1",
+      "tag": "Nến thơm",
+      "imageUrl": "491271846_122221522208040203_9122635507575025973_n.jpg",
+      "createdAt": "2026-04-10T08:31:04.079Z",
+      "updatedAt": "2026-04-10T08:31:04.079Z"
+    },
+    {
+      "id": "cmnsncck80002ig1t3xgqcxak",
+      "title": "Hướng dẫn đan Macrame trang trí tường phong cách Boho",
+      "excerpt": "Chỉ với chiếc dây thừng cotton và vài nút thắt cơ bản, bạn có thể biến bức tường trống trải thành điểm nhấn nghệ thuật.",
+      "content": "Nội dung chi tiết blog 2",
+      "tag": "Macrame",
+      "imageUrl": "491920804_122221522262040203_6298781457854458016_n.jpg",
+      "createdAt": "2026-04-10T08:31:04.088Z",
+      "updatedAt": "2026-04-10T08:31:04.088Z"
+    },
+    {
+      "id": "cmnsncckh0003ig1tlibf7oyv",
+      "title": "Bí quyết pha màu Resin Art trong suốt như pha lê",
+      "excerpt": "Lỗi thường gặp nhất của người mới chơi Resin Art là bọt khí và màu bị đục. Bài viết này sẽ giúp bạn khắc phục triệt để.",
+      "content": "Nội dung chi tiết blog 3",
+      "tag": "Resin",
+      "imageUrl": "528557863_122179504916393433_3501995056418838829_n.jpg",
+      "createdAt": "2026-04-10T08:31:04.097Z",
+      "updatedAt": "2026-04-10T08:31:04.097Z"
+    }
+  ],
+  "modules": [
+    {
+      "id": "cmnspbrm100038ei73p1uysvc",
+      "title": "asdfwg ",
+      "courseId": "3",
+      "createdAt": "2026-04-10T09:26:36.169Z",
+      "updatedAt": "2026-04-10T09:26:36.169Z"
+    },
+    {
+      "id": "cmnwmz6550001jg3n7hp3qm7r",
+      "title": "Module 1: Nhập môn Mosaic",
+      "courseId": "cmnwmz6550000jg3n8yt0cuiq",
+      "createdAt": "2026-04-13T03:31:53.945Z",
+      "updatedAt": "2026-04-13T03:31:53.945Z"
+    },
+    {
+      "id": "cmnwmz6550003jg3n5e7pabdf",
+      "title": "Module 2: Thực hành",
+      "courseId": "cmnwmz6550000jg3n8yt0cuiq",
+      "createdAt": "2026-04-13T03:31:53.945Z",
+      "updatedAt": "2026-04-13T03:31:53.945Z"
+    },
+    {
+      "id": "cmnwmz6550005jg3ni00oujpj",
+      "title": "Module 3: Kiếm 30 triệu",
+      "courseId": "cmnwmz6550000jg3n8yt0cuiq",
+      "createdAt": "2026-04-13T03:31:53.945Z",
+      "updatedAt": "2026-04-13T03:31:53.945Z"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "cmnwmz6550002jg3n1we1cqhi",
+      "title": "Bài 1: Tổng quan",
+      "videoUrl": "https://www.youtube.com/watch?v=tKmg3p41EpI",
+      "documentUrl": null,
+      "moduleId": "cmnwmz6550001jg3n7hp3qm7r",
+      "createdAt": "2026-04-13T03:31:53.945Z",
+      "updatedAt": "2026-04-13T03:31:53.945Z"
+    },
+    {
+      "id": "cmnwmz6550004jg3nkyujvycf",
+      "title": "Bài 2: Thực hành cơ bản",
+      "videoUrl": "https://www.youtube.com/shorts/ysh5Whd7IKE",
+      "documentUrl": null,
+      "moduleId": "cmnwmz6550003jg3n5e7pabdf",
+      "createdAt": "2026-04-13T03:31:53.945Z",
+      "updatedAt": "2026-04-13T03:31:53.945Z"
+    },
+    {
+      "id": "cmnwmz6550006jg3ne5mmvdf8",
+      "title": "Bài 3: Bí kíp nghìn đơn",
+      "videoUrl": "https://www.youtube.com/shorts/CtI5P5_Z7V8",
+      "documentUrl": null,
+      "moduleId": "cmnwmz6550005jg3ni00oujpj",
+      "createdAt": "2026-04-13T03:31:53.945Z",
+      "updatedAt": "2026-04-13T03:31:53.945Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "cmnsrk80d0006n69gzt5k4g2e",
+      "userId": "cmnsrhnj30000n69gg02sd7jl",
+      "courseId": "6",
+      "status": "PAID",
+      "totalAmount": 890000,
+      "createdAt": "2026-04-10T10:29:09.902Z",
+      "updatedAt": "2026-04-10T10:29:09.902Z"
+    },
+    {
+      "id": "cmnwmoap7000162iwpdq5kvfl",
+      "userId": "cmnsrhnj30000n69gg02sd7jl",
+      "courseId": "4",
+      "status": "PENDING",
+      "totalAmount": 990000,
+      "createdAt": "2026-04-13T03:23:26.633Z",
+      "updatedAt": "2026-04-13T03:23:26.633Z"
+    }
+  ]
+}
