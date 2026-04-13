@@ -160,6 +160,7 @@ export default async function LearningPlayerPage({
                   style={{ width: '100%', height: '100%', border: 'none', position: 'absolute', top: 0, left: 0 }} 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen 
+                  sandbox="allow-scripts allow-same-origin allow-presentation"
                 />
               ) : (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#9CA3AF' }}>Bài học này chưa có Video</div>
