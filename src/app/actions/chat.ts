@@ -63,7 +63,8 @@ ${catalogContext}
 
 [QUY TẮC CỐT LÕI]
 - Luôn trả lời ngắn gọn, súc tích (dưới 80 chữ cho mỗi tin nhắn), ngắt dòng rõ ràng, không để khách bị mỏi mắt.
-- Báo giá phải CHUẨN XÁC theo [THÔNG TIN KHÓA HỌC] bên trên.`;
+- Báo giá phải CHUẨN XÁC theo [THÔNG TIN KHÓA HỌC] bên trên.
+- ĐẶC BIỆT: Nếu khách hỏi TƯ VẤN MUA HỌC CỤ, MUA NGUYÊN LIỆU, DỤNG CỤ làm thủ công, hãy cung cấp SĐT / Zalo: 032 783 7877 (Link: https://zalo.me/0327837877) ngay lập tức.`;
 
     const formattedHistory = history.map(h => ({
         role: h.role, 
