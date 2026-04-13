@@ -57,23 +57,26 @@ export default function Chatbot() {
    return (
       <div style={{ position: 'fixed', bottom: '25px', right: '25px', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
          <style>{`
-            @keyframes bounceBot {
-              0%, 100% { transform: translateY(0); }
-              50% { transform: translateY(-15px); }
+            @keyframes happyWalk {
+              0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+              25% { transform: translateX(-20px) translateY(-12px) rotate(-8deg); }
+              50% { transform: translateX(0) translateY(0) rotate(0deg); }
+              75% { transform: translateX(20px) translateY(-12px) rotate(8deg); }
             }
             @keyframes pulseDot {
               0%, 100% { opacity: 0.3; transform: scale(0.8); }
               50% { opacity: 1; transform: scale(1.2); }
             }
             .belanh-mascot {
-               animation: bounceBot 2.5s infinite ease-in-out;
+               animation: happyWalk 3s infinite ease-in-out;
                cursor: pointer;
-               transition: transform 0.2s, filter 0.2s;
+               transition: filter 0.3s;
                filter: drop-shadow(0 10px 10px rgba(16, 185, 129, 0.4));
             }
             .belanh-mascot:hover {
-               transform: scale(1.05);
-               filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.6));
+               animation-play-state: paused;
+               transform: scale(1.1) !important;
+               filter: drop-shadow(0 15px 20px rgba(16, 185, 129, 0.7));
             }
             .chat-bubble-user {
                background: #10B981;
@@ -118,7 +121,7 @@ export default function Chatbot() {
                      </div>
                      <div>
                         <strong style={{ fontSize: '1.1rem', display: 'block', lineHeight: 1.2 }}>Bé Lành 🌱</strong>
-                        <span style={{ fontSize: '0.8rem', color: '#D1FAE5' }}>Trợ lý ảo Lành Academy</span>
+                        <span style={{ fontSize: '0.8rem', color: '#D1FAE5' }}>Nhân viên tư vấn trực tiếp</span>
                      </div>
                   </div>
                   <button onClick={toggleChat} style={{ background: 'none', border: 'none', color: 'white', fontSize: '1.8rem', cursor: 'pointer', lineHeight: 1 }}>×</button>
