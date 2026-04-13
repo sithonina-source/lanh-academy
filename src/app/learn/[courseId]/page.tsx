@@ -102,15 +102,20 @@ export default async function LearningPlayerPage({
                     if (!url) return '';
                     try {
                       const urlObj = new URL(url);
+                      let embedUrl = url;
                       if (urlObj.hostname.includes('youtube.com') && urlObj.searchParams.get('v')) {
-                        return `https://www.youtube.com/embed/${urlObj.searchParams.get('v')}`;
+                        embedUrl = `https://www.youtube.com/embed/${urlObj.searchParams.get('v')}`;
+                      } else if (urlObj.hostname.includes('youtube.com') && urlObj.pathname.startsWith('/shorts/')) {
+                        embedUrl = `https://www.youtube.com/embed/${urlObj.pathname.split('/shorts/')[1]}`;
+                      } else if (urlObj.hostname.includes('youtu.be')) {
+                        embedUrl = `https://www.youtube.com/embed${urlObj.pathname}`;
                       }
-                      if (urlObj.hostname.includes('youtube.com') && urlObj.pathname.startsWith('/shorts/')) {
-                        return `https://www.youtube.com/embed/${urlObj.pathname.split('/shorts/')[1]}`;
+                      
+                      // Nếu là YouTube, thêm các tham số tối giản giao diện
+                      if (embedUrl.includes('youtube.com/embed')) {
+                        return `${embedUrl}?rel=0&modestbranding=1&showinfo=0`;
                       }
-                      if (urlObj.hostname.includes('youtu.be')) {
-                        return `https://www.youtube.com/embed${urlObj.pathname}`;
-                      }
+                      return embedUrl;
                     } catch(e) {}
                     return url;
                   })(activeLesson.videoUrl)}
