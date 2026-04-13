@@ -1,7 +1,8 @@
 import prisma from '@/lib/prisma';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { createModule, deleteModule, createLesson, deleteLesson } from '../../../actions';
+import { createModule, deleteModule, createLesson, deleteLesson, updateLesson } from '../../../actions';
+import InlineLesson from './InlineLesson';
 
 export default async function CurriculumPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -53,24 +54,14 @@ export default async function CurriculumPage({ params }: { params: Promise<{ id:
             <div style={{ paddingLeft: '20px', marginBottom: '20px' }}>
               {mod.lessons.map(les => {
                 const handleDeleteLes = deleteLesson.bind(null, course.id, les.id);
+                const handleUpdateLes = updateLesson.bind(null, course.id, les.id);
                 return (
-                  <div key={les.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#F9FAFB', borderRadius: '8px', marginBottom: '10px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ fontSize: '1.2rem' }}>🎥</span>
-                      <div>
-                        <div style={{ fontWeight: 600, color: '#374151' }}>{les.title}</div>
-                        <div style={{ display: 'flex', gap: '10px', fontSize: '0.8rem' }}>
-                          <a href={les.videoUrl} target="_blank" rel="noreferrer" style={{ color: '#3B82F6', textDecoration: 'none' }}>▶ Video</a>
-                          {les.documentUrl && (
-                            <a href={les.documentUrl} target="_blank" rel="noreferrer" style={{ color: '#10B981', textDecoration: 'none' }}>📄 Tài liệu</a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <form action={handleDeleteLes}>
-                      <button type="submit" style={{ color: '#EF4444', background: 'none', border: 'none', cursor: 'pointer', padding: '5px' }}>Xóa</button>
-                    </form>
-                  </div>
+                  <InlineLesson 
+                    key={les.id} 
+                    lesson={les} 
+                    updateAction={handleUpdateLes} 
+                    deleteAction={handleDeleteLes} 
+                  />
                 );
               })}
             </div>

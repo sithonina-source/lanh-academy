@@ -102,6 +102,18 @@ export async function deleteLesson(courseId: string, lessonId: string) {
   revalidatePath(`/admin/courses/${courseId}/modules`);
 }
 
+export async function updateLesson(courseId: string, lessonId: string, formData: FormData) {
+  const title = formData.get('title') as string;
+  const videoUrl = formData.get('videoUrl') as string;
+  const documentUrl = formData.get('documentUrl') as string;
+  if (!title || !videoUrl) return;
+  await prisma.lesson.update({
+    where: { id: lessonId },
+    data: { title, videoUrl, documentUrl }
+  });
+  revalidatePath(`/admin/courses/${courseId}/modules`);
+}
+
 // === Blog Actions ===
 
 export async function createBlog(formData: FormData) {

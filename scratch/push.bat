@@ -1,3 +1,3 @@
 git add .
-git commit -m "Fix UI confirm link"
+git commit -m "Add Inline Lesson Edit functionality"
 git push origin main
