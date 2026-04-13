@@ -64,11 +64,41 @@ export default async function LearningPlayerPage({
     <div className="learning-layout">
       
       {/* Mobile Top Bar */}
-      <div className="show-on-mobile" style={{ display: 'none', padding: '15px 20px', backgroundColor: 'white', borderBottom: '1px solid #E5E7EB', alignItems: 'center', gap: '15px' }}>
-         <Link href={`/khoa-hoc/${course.slug || course.id}`} style={{ color: '#4B5563', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-         </Link>
-         <h2 style={{ fontSize: '1.2rem', color: 'var(--primary-green)', fontWeight: 800, margin: 0 }}>LÀNH ACADEMY</h2>
+      <div className="show-on-mobile" style={{ display: 'none', flexDirection: 'column', backgroundColor: 'white', borderBottom: '1px solid #E5E7EB', width: '100%' }}>
+         <div style={{ display: 'flex', padding: '15px 20px', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+             <Link href={`/khoa-hoc/${course.slug || course.id}`} style={{ color: '#4B5563', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+             </Link>
+             <h2 style={{ fontSize: '1.2rem', color: 'var(--primary-green)', fontWeight: 800, margin: 0 }}>LÀNH ACADEMY</h2>
+           </div>
+           
+           <button id="mobileMenuBtn" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4B5563', padding: '5px' }}>
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+           </button>
+         </div>
+
+         {/* Dropdown Menu */}
+         <div id="mobileMenuDropdown" style={{ display: 'none', flexDirection: 'column', padding: '0 20px 10px 20px', borderTop: '1px solid #F3F4F6' }}>
+            {[
+              { name: 'Trang chủ', path: '/', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg> },
+              { name: 'Tổng quan', path: `/khoa-hoc/${course.slug || course.id}`, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> },
+              { name: 'Khoá học của tôi', path: '/my-courses', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg> },
+              { name: 'Các khoá học', path: '/khoa-hoc', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> },
+              { name: 'Group Zalo hỗ trợ', path: '#', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg> }
+            ].map((item, idx) => (
+              <Link key={idx} href={item.path} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 0', borderBottom: '1px solid #F3F4F6', color: '#4B5563', textDecoration: 'none', fontSize: '1rem', fontWeight: 500 }}>
+                <span style={{ color: '#9CA3AF' }}>{item.icon}</span>
+                {item.name}
+              </Link>
+            ))}
+         </div>
+         <script dangerouslySetInnerHTML={{ __html: `
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+               var menu = document.getElementById('mobileMenuDropdown');
+               menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+            });
+         `}}></script>
       </div>
 
       {/* Left Sidebar (Navigation) */}
