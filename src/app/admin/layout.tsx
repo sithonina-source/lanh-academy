@@ -20,7 +20,6 @@ export default async function AdminLayout({
   const hasFullAccess = session.role === 'ADMIN' || permissions.includes('ALL');
 
   return (
-  return (
     <div className="admin-layout">
       {/* Sidebar */}
       <aside className="admin-sidebar" style={{ backgroundColor: '#1F2937', color: 'white', display: 'flex', flexDirection: 'column' }}>
