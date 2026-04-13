@@ -14,6 +14,8 @@ export async function chatWithBeLanh(message: string, history: {role: 'user'|'mo
     let isStudent = false;
     let studentContext = "";
     
+    const currentDate = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+    
     if (sessionCookie) {
        const user = JSON.parse(sessionCookie);
        const orders = await prisma.order.findMany({
@@ -23,7 +25,8 @@ export async function chatWithBeLanh(message: string, history: {role: 'user'|'mo
        });
        
        isStudent = true;
-       studentContext = `Học viên tên là: ${user.name}. Email: ${user.email}. `;
+       // Ngăn bot bê nguyên tên công ty ra chào
+       studentContext = `Học viên đăng ký tên là: "${user.name}". Tên này có thể là tên công ty. LƯU Ý: Tuyệt đối KHÔNG BÊ NGUYÊN TÊN CÔNG TY VÀO LỜI CHÀO. Chỉ xưng hô "Anh/Chị" chung chung cho thân thiện. `;
        if (orders.length > 0) {
            const paidOrders = orders.filter(o => o.status === 'PAID' || o.status === 'COMPLETED');
            const pendingOrders = orders.filter(o => o.status === 'PENDING');
@@ -41,6 +44,7 @@ export async function chatWithBeLanh(message: string, history: {role: 'user'|'mo
     }
 
     const systemInstruction = `Bạn là Trợ lý AI tên là "Bé Lành" (Bé Lành Chatbot) của Trung tâm Lành Academy (chuyên đạo tạo làm đồ thủ công tinh xảo, cắt ghép đá Mosaic chuyên nghiệp).
+Thời điểm hiện tại đang là: ${currentDate} (Giờ Việt Nam).
 Tính cách: Dễ thương, lanh lợi, cực kỳ nhiệt huyết, luôn xưng hô là "Bé Lành" và gọi người dùng là "Anh/Chị" hoặc "Bạn". Luôn dùng biểu cảm emoji đáng yêu ❤️✨🌱.
 Mục tiêu tuyệt đối: 
 1. Giải đáp thắc mắc liên quan tới thủ công.
