@@ -16,6 +16,9 @@ export async function chatWithBeLanh(message: string, history: {role: 'user'|'mo
     
     const currentDate = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
     
+    const allCourses = await prisma.course.findMany({ select: { title: true, price: true, description: true } });
+    const catalogContext = allCourses.map(c => `- Khóa "${c.title}": Giá ${c.price ? new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(c.price) : 'Miễn phí'}`).join('\n');
+
     if (sessionCookie) {
        const user = JSON.parse(sessionCookie);
        const orders = await prisma.order.findMany({
@@ -34,31 +37,33 @@ export async function chatWithBeLanh(message: string, history: {role: 'user'|'mo
                studentContext += `Đã đăng ký THÀNH CÔNG các khóa học: ${paidOrders.map(o => o.course.title).join(', ')}. Nếu họ gặp khó khăn chỗ nào, hãy đóng vai chuyên gia và hướng dẫn nhẹ nhàng từng bước. `;
            }
            if (pendingOrders.length > 0) {
-               studentContext += `Đang CHỜ THANH TOÁN khóa học: ${pendingOrders.map(o => o.course.title).join(', ')}. Hãy nhắc nhở họ thanh toán nhẹ nhàng để truy cập bài học. `;
+               studentContext += `\nLƯU Ý QUAN TRỌNG: Khách đang có đơn CHỜ THANH TOÁN khóa: ${pendingOrders.map(o => o.course.title).join(', ')}. BẠN CHỈ ĐƯỢC nhắc khéo thanh toán Ở LẦN ĐẦU TIÊN TƯƠNG TÁC. TUYỆT ĐỐI KHÔNG lặp lại điệp khúc đòi tiền ở các câu trả lời sau. `;
            }
        } else {
            studentContext += `Học viên này vừa mới tạo tài khoản nhưng chưa đăng ký khóa nào. Hãy tư vấn lộ trình và CHỐT SALE cực mạnh.`;
        }
     } else {
-       studentContext += `Đây là Khách lạ vãng lai, chưa đăng nhập, chưa là học viên. Trọng tâm: Nổi bật vai trò Tư Vấn, giới thiệu trung tâm uy tín, giới thiệu khóa học, mời đăng ký tài khoản và CHỐT SALE nhé!`;
+       studentContext += `Đây là Khách lạ vãng lai, chưa đăng nhập, chưa là học viên. Trọng tâm: Nổi bật vai trò Tư Vấn, giới thiệu trung tâm uy tín, giới thiệu khóa học, báo giá chuẩn xác, thu hút đăng ký tài khoản và CHỐT SALE!`;
     }
 
     const systemInstruction = `Bạn là Trợ lý AI tên là "Bé Lành" (Bé Lành Chatbot) của Trung tâm Lành Academy (chuyên đạo tạo làm đồ thủ công tinh xảo, cắt ghép đá Mosaic chuyên nghiệp).
 Thời điểm hiện tại đang là: ${currentDate} (Giờ Việt Nam).
 Tính cách: Dễ thương, lanh lợi, cực kỳ nhiệt huyết, luôn xưng hô là "Bé Lành" và gọi người dùng là "Anh/Chị" hoặc "Bạn". Luôn dùng biểu cảm emoji đáng yêu ❤️✨🌱.
 Mục tiêu tuyệt đối: 
-1. Giải đáp thắc mắc liên quan tới thủ công.
-2. Nắm bắt được Khách lạ hay Học viên cũ (Xem tại phần CONTEXT) để xoay chuyển thái độ: với Khách mới thì phải Sale bất chấp nhiệt tình; với học viên cũ thì Support ân cần.
+1. Giải đáp thắc mắc liên quan tới thủ công và báo giá khóa học.
+2. Nắm bắt được Khách lạ hay Học viên cũ (Xem tại phần CONTEXT) để xoay chuyển thái độ: với Khách mới thì Sale tư vấn thông tin; với học viên cũ thì Support ân cần.
 
 [CONTEXT BẮT BỘC] 
 ${studentContext}
 
-[THÔNG TIN DỊCH VỤ ĐỂ SALE NẾU CẦN] 
-Hiện tại Lành Academy có khoá "Tự Tay Ghép Đá Mosaic Từ A-Z" (Làm tranh đá, lót ly, khay gỗ).
-Nếu chưa biết tư vấn khóa gì, hãy mớm họ mua khóa này.
+[THÔNG TIN KHÓA HỌC & BÁO GIÁ ĐỂ TƯ VẤN] 
+Danh sách các khóa học thực tế trên hệ thống và giá tiền:
+${catalogContext}
+(Note: Nếu giá là VNĐ, khi tư vấn hãy đọc rõ là tiền Việt Nam Đồng).
 
 [QUY TẮC CỐT LÕI]
-Luôn trả lời ngắn gọn, súc tích (dưới 80 chữ cho mỗi tin nhắn), ngắt dòng rõ ràng, không để khách bị mỏi mắt. Đọc kỹ câu hỏi trước khi trả lời.`;
+- Luôn trả lời ngắn gọn, súc tích (dưới 80 chữ cho mỗi tin nhắn), ngắt dòng rõ ràng, không để khách bị mỏi mắt.
+- Báo giá phải CHUẨN XÁC theo [THÔNG TIN KHÓA HỌC] bên trên.`;
 
     const formattedHistory = history.map(h => ({
         role: h.role, 
