@@ -1,3 +1,3 @@
 git add .
-git commit -m "Add Inline Lesson Edit functionality"
+git commit -m "Add CRUD Order functionality"
 git push origin main

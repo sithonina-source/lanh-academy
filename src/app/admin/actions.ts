@@ -154,3 +154,55 @@ export async function deleteBlog(id: string) {
   revalidatePath('/admin/blogs');
   revalidatePath('/blog');
 }
+
+// === Order Actions ===
+
+export async function createOrder(formData: FormData) {
+  let userId = formData.get('userId') as string;
+  const courseId = formData.get('courseId') as string;
+  const status = formData.get('status') as string;
+  const totalAmount = parseInt(formData.get('totalAmount') as string) || 0;
+  
+  if (userId === 'NEW_USER') {
+    const name = formData.get('newUserName') as string;
+    const email = formData.get('newUserEmail') as string;
+    const password = formData.get('newUserPassword') as string || '12345678';
+    
+    let existingUser = await prisma.user.findUnique({ where: { email } });
+    if (!existingUser) {
+      existingUser = await prisma.user.create({
+        data: { name, email, password, role: 'USER' }
+      });
+    }
+    userId = existingUser.id;
+  }
+
+  if (!userId || !courseId) return;
+
+  await prisma.order.create({
+    data: { userId, courseId, status, totalAmount }
+  });
+
+  revalidatePath('/admin/orders');
+  redirect('/admin/orders');
+}
+
+export async function updateOrder(id: string, formData: FormData) {
+  const status = formData.get('status') as string;
+  const totalAmountStr = formData.get('totalAmount') as string;
+  
+  const totalAmount = parseInt(totalAmountStr) || 0;
+
+  await prisma.order.update({
+    where: { id },
+    data: { status, totalAmount }
+  });
+
+  revalidatePath('/admin/orders');
+  redirect('/admin/orders');
+}
+
+export async function deleteOrder(id: string) {
+  await prisma.order.delete({ where: { id } });
+  revalidatePath('/admin/orders');
+}
