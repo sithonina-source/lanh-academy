@@ -61,7 +61,7 @@ export default async function LearningPlayerPage({
   }
 
   return (
-    <div className="learning-layout" style={{ display: 'flex', height: '100vh', backgroundColor: '#F3F4F6', color: '#374151', overflow: 'hidden' }}>
+    <div className="learning-layout">
       
       {/* Mobile Top Bar */}
       <div className="show-on-mobile" style={{ display: 'none', padding: '15px 20px', backgroundColor: 'white', borderBottom: '1px solid #E5E7EB', alignItems: 'center', gap: '15px' }}>
@@ -72,7 +72,7 @@ export default async function LearningPlayerPage({
       </div>
 
       {/* Left Sidebar (Navigation) */}
-      <nav className="learning-nav" style={{ width: '250px', backgroundColor: '#F3F4F6', borderRight: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', padding: '30px 0', flexShrink: 0 }}>
+      <nav className="learning-nav">
         <div style={{ padding: '0 20px', marginBottom: '30px' }}>
           <h2 style={{ fontSize: '1.2rem', color: 'var(--primary-green)', fontWeight: 800, margin: 0 }}>LÀNH ACADEMY</h2>
         </div>
@@ -98,7 +98,7 @@ export default async function LearningPlayerPage({
       </nav>
 
       {/* Main Content (Video Area) */}
-      <main className="learning-main" style={{ flex: 1, overflowY: 'auto', padding: '24px', display: 'flex', flexDirection: 'column' }}>
+      <main className="learning-main">
         <div style={{ backgroundColor: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)', flex: 1, display: 'flex', flexDirection: 'column' }}>
           
           {/* Video Player */}
@@ -181,7 +181,7 @@ export default async function LearningPlayerPage({
       </main>
 
       {/* Right Sidebar (Curriculum) */}
-      <aside className="learning-aside" style={{ width: '380px', backgroundColor: 'white', borderLeft: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+      <aside className="learning-aside">
         
         <div style={{ padding: '24px 20px', borderBottom: '1px solid #E5E7EB' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--primary-green)', fontWeight: 700, fontSize: '0.95rem', marginBottom: '16px' }}>
@@ -208,6 +208,19 @@ export default async function LearningPlayerPage({
           {course.modules.flatMap(m => m.lessons).map((l, globalIndex) => {
             const isActive = activeLesson?.id === l.id;
             
+            const getYoutubeId = (url: string) => {
+               try {
+                 if (!url) return null;
+                 const urlObj = new URL(url);
+                 if (urlObj.hostname.includes('youtube.com') && urlObj.searchParams.get('v')) return urlObj.searchParams.get('v');
+                 if (urlObj.hostname.includes('youtube.com') && urlObj.pathname.startsWith('/shorts/')) return urlObj.pathname.split('/shorts/')[1];
+                 if (urlObj.hostname.includes('youtu.be')) return urlObj.pathname.replace('/','');
+               } catch(e) { return null; }
+               return null;
+            };
+            const yId = getYoutubeId(l.videoUrl || '');
+            const thumbUrl = yId ? `https://img.youtube.com/vi/${yId}/mqdefault.jpg` : `url('/hero_workshop_banner_1775803632274.png')`;
+
             return (
               <Link 
                 key={l.id} 
@@ -229,22 +242,23 @@ export default async function LearningPlayerPage({
                     width: '100px', 
                     height: '65px', 
                     borderRadius: '8px', 
-                    backgroundColor: isActive ? 'var(--primary-green)' : '#2A4325', 
+                    backgroundColor: '#E5E7EB', 
                     position: 'relative', 
                     overflow: 'hidden',
                     flexShrink: 0
                 }}>
-                  {/* Pseudo Background pattern from image */}
-                  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.15, backgroundImage: `url('/hero_workshop_banner_1775803632274.png')`, backgroundSize: 'cover' }}></div>
+                  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundImage: yId ? `url(${thumbUrl})` : thumbUrl, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                  
+                  {isActive && <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(140, 198, 63, 0.4)' }}></div>}
                   
                   {isActive && (
-                    <div style={{ position: 'absolute', top: '5px', left: '5px', backgroundColor: 'rgba(0,0,0,0.4)', borderRadius: '4px', padding: '2px 6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <div style={{ position: 'absolute', top: '5px', left: '5px', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '4px', padding: '2px 6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                        <div style={{ width: '8px', height: '8px', backgroundColor: 'var(--primary-green)', borderRadius: '50%' }}></div>
                        <span style={{ fontSize: '0.65rem', color: 'white', fontWeight: 600 }}>Đang xem</span>
                     </div>
                   )}
 
-                  <div style={{ position: 'absolute', bottom: '0', right: '0', backgroundColor: 'white', color: '#111827', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 700, borderTopLeftRadius: '8px' }}>
+                  <div style={{ position: 'absolute', bottom: '0', right: '0', backgroundColor: 'rgba(0,0,0,0.7)', color: 'white', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, borderTopLeftRadius: '8px' }}>
                     {globalIndex + 1}
                   </div>
                 </div>
