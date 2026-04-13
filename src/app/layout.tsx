@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   }
 };
 
+import Chatbot from "@/components/Chatbot";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,7 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={beVietnamPro.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Chatbot />
+      </body>
     </html>
   );
 }
