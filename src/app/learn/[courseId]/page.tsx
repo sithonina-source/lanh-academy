@@ -61,10 +61,18 @@ export default async function LearningPlayerPage({
   }
 
   return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: '#F3F4F6', color: '#374151', overflow: 'hidden' }}>
+    <div className="learning-layout" style={{ display: 'flex', height: '100vh', backgroundColor: '#F3F4F6', color: '#374151', overflow: 'hidden' }}>
       
+      {/* Mobile Top Bar */}
+      <div className="show-on-mobile" style={{ display: 'none', padding: '15px 20px', backgroundColor: 'white', borderBottom: '1px solid #E5E7EB', alignItems: 'center', gap: '15px' }}>
+         <Link href={`/khoa-hoc/${course.slug || course.id}`} style={{ color: '#4B5563', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+         </Link>
+         <h2 style={{ fontSize: '1.2rem', color: 'var(--primary-green)', fontWeight: 800, margin: 0 }}>LÀNH ACADEMY</h2>
+      </div>
+
       {/* Left Sidebar (Navigation) */}
-      <nav style={{ width: '250px', backgroundColor: '#F3F4F6', borderRight: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', padding: '30px 0', flexShrink: 0 }}>
+      <nav className="learning-nav" style={{ width: '250px', backgroundColor: '#F3F4F6', borderRight: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', padding: '30px 0', flexShrink: 0 }}>
         <div style={{ padding: '0 20px', marginBottom: '30px' }}>
           <h2 style={{ fontSize: '1.2rem', color: 'var(--primary-green)', fontWeight: 800, margin: 0 }}>LÀNH ACADEMY</h2>
         </div>
@@ -90,11 +98,11 @@ export default async function LearningPlayerPage({
       </nav>
 
       {/* Main Content (Video Area) */}
-      <main style={{ flex: 1, overflowY: 'auto', padding: '24px', display: 'flex', flexDirection: 'column' }}>
+      <main className="learning-main" style={{ flex: 1, overflowY: 'auto', padding: '24px', display: 'flex', flexDirection: 'column' }}>
         <div style={{ backgroundColor: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)', flex: 1, display: 'flex', flexDirection: 'column' }}>
           
           {/* Video Player */}
-          <div style={{ width: '100%', flex: 1, backgroundColor: 'black', position: 'relative' }}>
+          <div className="mobile-video-container" style={{ width: '100%', flex: 1, backgroundColor: 'black', position: 'relative' }}>
             {activeLesson ? (
               activeLesson.videoUrl ? (
                 <iframe 
@@ -173,7 +181,7 @@ export default async function LearningPlayerPage({
       </main>
 
       {/* Right Sidebar (Curriculum) */}
-      <aside style={{ width: '380px', backgroundColor: 'white', borderLeft: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+      <aside className="learning-aside" style={{ width: '380px', backgroundColor: 'white', borderLeft: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
         
         <div style={{ padding: '24px 20px', borderBottom: '1px solid #E5E7EB' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--primary-green)', fontWeight: 700, fontSize: '0.95rem', marginBottom: '16px' }}>
