@@ -9,8 +9,9 @@ export default function CheckoutForm({ courseId, amount, orderId }: { courseId: 
   const [bankingStatus, setBankingStatus] = useState<string>('Đang chờ thanh toán...');
 
   // Tạm để tài khoản demo, bạn thay bằng số tài khoản thật sau nhé.
-  const bankName = "Vietcombank"; 
-  const accountNumber = "0010000000355";
+  const bankName = "ACB"; 
+  const accountNumber = "2969007";
+  const accountName = "HUYNH VO SI THO";
   
   // Cấu trúc nội dung thanh toán CHÍNH XÁC LÀ ORDER ID ĐỂ SEPAY TRẢ VỀ VÀ NHẬN DIỆN
   const description = orderId;
@@ -57,6 +58,7 @@ export default function CheckoutForm({ courseId, amount, orderId }: { courseId: 
 
       <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#F3F4F6', borderRadius: '12px', textAlign: 'left', display: 'inline-block', width: '100%', maxWidth: '350px', wordBreak: 'break-all' }}>
         <p style={{ margin: '0 0 10px 0', fontSize: '0.95rem' }}><strong>Ngân hàng:</strong> {bankName}</p>
+        <p style={{ margin: '0 0 10px 0', fontSize: '0.95rem' }}><strong>Chủ tài khoản:</strong> {accountName}</p>
         <p style={{ margin: '0 0 10px 0', fontSize: '0.95rem' }}><strong>Số tài khoản:</strong> {accountNumber}</p>
         <p style={{ margin: '0 0 10px 0', fontSize: '0.95rem' }}><strong>Số tiền:</strong> {amount.toLocaleString('vi-VN')} đ</p>
         <p style={{ margin: '0', fontSize: '0.95rem' }}><strong>Nội dung:</strong> {description}</p>

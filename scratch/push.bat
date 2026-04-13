@@ -1,3 +1,3 @@
 git add .
-git commit -m "Fix UI price detail page logic"
+git commit -m "Update bank account to ACB"
 git push origin main
