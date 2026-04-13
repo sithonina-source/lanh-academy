@@ -35,26 +35,10 @@ export default async function NewOrderPage() {
           <label style={{ fontWeight: 600, color: '#374151' }}>Học Viên (*)</label>
           <select name="userId" required style={{ padding: '12px', borderRadius: '8px', border: '1px solid #D1D5DB', fontSize: '1rem' }} id="userSelectElement">
             <option value="">-- Chọn Học Viên đã có --</option>
-            <option value="NEW_USER" style={{ fontWeight: 'bold', color: 'var(--primary-green)' }}>+ Tạo Học Viên Mới (Điền thông tin bên dưới)</option>
             {users.map(u => (
               <option key={u.id} value={u.id}>{u.name} ({u.email})</option>
             ))}
           </select>
-          
-          {/* New User Fields (hidden by default unless logic is handled by client component, but we will use CSS / basic JS)*/}
-          <div style={{ display: 'none', flexDirection: 'column', gap: '10px', marginTop: '10px', padding: '15px', backgroundColor: '#F9FAFB', border: '1px dashed #D1D5DB', borderRadius: '8px' }}>
-             <p style={{ margin: 0, fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Cấp tài khoản mới cho học viên:</p>
-             <input type="text" name="newUserName" placeholder="Tên học viên..." style={{ padding: '10px', borderRadius: '6px', border: '1px solid #D1D5DB' }} />
-             <input type="email" name="newUserEmail" placeholder="Email học viên..." style={{ padding: '10px', borderRadius: '6px', border: '1px solid #D1D5DB' }} />
-             <input type="text" name="newUserPassword" placeholder="Mật khẩu (Mặc định: 12345678)" defaultValue="12345678" style={{ padding: '10px', borderRadius: '6px', border: '1px solid #D1D5DB' }} />
-             <p style={{ margin: 0, fontSize: '0.8rem', color: '#EF4444' }}>* Mật khẩu mặc định là 12345678 nếu bỏ trống.</p>
-          </div>
-          {/* A small inline script to handle select change to show/hide new user UI natively */}
-          <script dangerouslySetInnerHTML={{ __html: `
-            document.getElementById("userSelectElement").addEventListener("change", function(e) {
-               this.nextElementSibling.style.display = e.target.value === "NEW_USER" ? "flex" : "none";
-            });
-          `}}></script>
         </div>
 
         {/* Total Amount */}

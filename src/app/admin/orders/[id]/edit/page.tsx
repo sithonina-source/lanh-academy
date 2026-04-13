@@ -53,14 +53,14 @@ export default async function EditOrderPage({ params }: { params: Promise<{ id: 
           </button>
         </form>
 
-        {/* User Login Info (Right side) */}
+        {/* User Info (Right side) */}
         <div style={{ flex: 1, backgroundColor: '#EFF6FF', padding: '24px', borderRadius: '12px', border: '1px solid #BFDBFE' }}>
            <h3 style={{ margin: '0 0 15px 0', color: '#1E40AF', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
               Tài Khoản Học Viên
            </h3>
            
-           <p style={{ margin: '0 0 10px 0', fontSize: '0.9rem', color: '#3B82F6', fontWeight: 600 }}>Cấp sẵn Email / Pass để gửi qua Zalo cho khách:</p>
+           <p style={{ margin: '0 0 10px 0', fontSize: '0.9rem', color: '#3B82F6', fontWeight: 600 }}>Thông tin đăng ký của khách:</p>
            
            <div style={{ backgroundColor: 'white', padding: '12px', borderRadius: '8px', marginBottom: '10px', border: '1px solid #DBEAFE', wordBreak: 'break-all' }}>
               <div style={{ fontSize: '0.8rem', color: '#6B7280', marginBottom: '3px' }}>Họ Tên:</div>
@@ -72,14 +72,6 @@ export default async function EditOrderPage({ params }: { params: Promise<{ id: 
               <div style={{ fontWeight: 600, color: '#111827' }}>{order.user?.email}</div>
            </div>
            
-           <div style={{ backgroundColor: '#F0FDF4', padding: '12px', borderRadius: '8px', border: '1px solid #BBF7D0', position: 'relative' }}>
-              <div style={{ fontSize: '0.8rem', color: '#166534', marginBottom: '3px' }}>Mật khẩu:</div>
-              <div style={{ fontWeight: 700, color: '#16A34A', fontSize: '1.2rem', letterSpacing: '1px' }}>{order.user?.password || 'Chưa thiết lập'}</div>
-           </div>
-           
-           <p style={{ fontSize: '0.8rem', color: '#60A5FA', marginTop: '15px', fontStyle: 'italic' }}>
-             Nếu khách hàng quên mật khẩu, Sếp có thể copy mật khẩu màu xanh trên gửi cho khách!
-           </p>
         </div>
       </div>
     </div>

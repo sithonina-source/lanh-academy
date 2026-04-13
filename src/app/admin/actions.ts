@@ -163,20 +163,6 @@ export async function createOrder(formData: FormData) {
   const status = formData.get('status') as string;
   const totalAmount = parseInt(formData.get('totalAmount') as string) || 0;
   
-  if (userId === 'NEW_USER') {
-    const name = formData.get('newUserName') as string;
-    const email = formData.get('newUserEmail') as string;
-    const password = formData.get('newUserPassword') as string || '12345678';
-    
-    let existingUser = await prisma.user.findUnique({ where: { email } });
-    if (!existingUser) {
-      existingUser = await prisma.user.create({
-        data: { name, email, password, role: 'USER' }
-      });
-    }
-    userId = existingUser.id;
-  }
-
   if (!userId || !courseId) return;
 
   await prisma.order.create({
